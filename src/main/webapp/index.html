@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Hot Uploader</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+
+<body ng-app="hot-uploader" ng-controller="MainCtrl">
+    <div class="container">
+        <div class="row">
+            <h1>Hot Uploader!</h1><span class="pull-right"><a href="api/index.html">Documentação da API</a></span></div>
+        <div class="row col-md-12">
+            <div class="form-group">
+                <label>Usuário:</label>
+                <input id="user" type="text" ng-model="user" />
+            </div>
+            <div class="form-group">
+                <input class="col-md-6" type="file" id="afile" custom-on-change="fileChange" />
+                <button ng-disabled="!fileUploadSession.md5" ng-click="uploadFile()" class="btn">upload</button>
+            </div>
+            <div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th colspan="4">Progresso ...</th>
+                        </tr>
+                        <tr>
+                            <th>Geração metaInfo</th>
+                            <th>Upload chunk</th>
+                            <th>Upload File</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody ng-if="fileUploadSession">
+                        <tr>
+                            <td>{{progressMD5}}%</td>
+                            <td>{{fileUploadSession.currentChunkSending ? fileUploadSession.currentChunkSending.index+1 : ''}} {{(fileUploadSession.currentChunkSending ? fileUploadSession.currentChunkSending.progressChunk/fileUploadSession.currentChunkSending.getChunkSize()*100 : 0) | number:0}}%</td>
+                            <td>{{(fileUploadSession.progressFile/fileUploadSession.file.size*100) | number:0}}%</td>
+                            <td>{{fileUploadSession.status}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row col-md-12">
+            <fieldset>
+                <legend>Lista de arquivos</legend>
+                <button ng-click="findFiles()" class="btn pull-right">Pesquisar</button>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Usuário</th>
+                            <th>Nome</th>
+                            <th>Status</th>
+                            <th>Tempo</th>
+                            <th>Partes</th>
+                            <th>Tamanho</th>
+                            <th>Link</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="file in uploadedFiles">
+                            <td>{{file.user}}</td>
+                            <td>{{file.name}}</td>
+                            <td>{{file.statusUpload}}</td>
+                            <td>{{(file.elapsedTime/1000)|number:2}}s</td>
+                            <td>{{file.chunks.length}}/{{Math.ceil(file.length / chunkSize)}}</td>
+                            <td>{{(file.length/(1024*1024)) | number:2}}Mb</td>
+                            <td><a href="v1/file/download/{{file.md5}}" ng-if="file.statusUpload == 'CONCLUIDO'">download</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </fieldset>
+        </div>
+    </div>
+    <!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/spark-md5/3.0.0/spark-md5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script> -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="angular.js_1.6.1_angular.min.js"></script>
+    <script type="text/javascript" src="spark-md5_3.0.0_spark-md5.min.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+
+</body>
+
+</html>
