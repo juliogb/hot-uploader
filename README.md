@@ -1,5 +1,6 @@
-# hot-uploader
-Upload de arquivos em chunks!!!
+hot-uploader [![Build Status](https://travis-ci.org/juliogb/hot-uploader.svg?branch=master)](https://travis-ci.org/juliogb/hot-uploader)
+==================
+Upload de arquivos em chunks!!! 
 
 Implementação de serviço JAX-RS inspirada na API do google drive para upload de arquivos. A implementação segue as definições previstas na especificação do protocolo HTTP/1.1 (RFC2616).
 
