@@ -5,21 +5,14 @@
 */
 package com.hotmart.hot.uploader.model;
 
-import com.hotmart.hot.uploader.model.ChunkMetaInfo;
-import com.hotmart.hot.uploader.model.FileMetaInfo;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
-import javax.annotation.PostConstruct;
-import javax.ejb.Asynchronous;
 import javax.ejb.ConcurrencyManagement;
 import javax.ejb.ConcurrencyManagementType;
-import javax.ejb.Lock;
-import javax.ejb.LockType;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
 import org.apache.commons.io.FileUtils;

@@ -6,14 +6,8 @@
 package com.hotmart.hot.uploader.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.google.common.hash.Hashing;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStream;
-import java.security.DigestInputStream;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ws.rs.WebApplicationException;

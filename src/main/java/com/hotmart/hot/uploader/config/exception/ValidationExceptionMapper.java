@@ -29,7 +29,7 @@ public class ValidationExceptionMapper implements ExceptionMapper<javax.validati
     
     
     private Map<String, List<String>> getViolations(ConstraintViolationException exception) {
-        Map<String, List<String>> result = new HashMap<String, List<String>>();
+        Map<String, List<String>> result = new HashMap<>();
         for (ConstraintViolation violation : exception.getConstraintViolations()) {
             String path = "";
             if (null != violation.getPropertyPath()) {
@@ -37,7 +37,7 @@ public class ValidationExceptionMapper implements ExceptionMapper<javax.validati
             }
             List<String> msgs = result.get(path);
             if (null == msgs) {
-                msgs = new ArrayList<String>();
+                msgs = new ArrayList<>();
                 result.put(path, msgs);
             }
             msgs.add(violation.getMessage());

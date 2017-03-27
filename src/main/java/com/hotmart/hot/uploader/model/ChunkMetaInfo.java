@@ -141,8 +141,8 @@ public class ChunkMetaInfo {
     @JsonIgnore
     public File getFile() {
         String pwd = BASE_PATH+getUser()+File.separator+getFileMD5()+File.separator;
-        String fileName = getStartByte()+"-"+getEndByte()+".part";
-        return new File(pwd+fileName);
+        String partFileName = getStartByte()+"-"+getEndByte()+".part";
+        return new File(pwd+partFileName);
     }
 
 }
